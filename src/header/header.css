@@ -1,0 +1,14 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.header-main {
+    display: flex;
+    gap: 2em;
+}
+
+hr {
+    margin: 0;
+    padding: 0;
+}
