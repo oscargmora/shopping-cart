@@ -8,7 +8,7 @@ const Header = () => {
                 <h1>Fake Store</h1>
                 <div className='header-main'>
                     <Link to='/'>Home</Link>
-                    <Link to='/shop'>Shop</Link>
+                    <Link to='/catalogue'>Catalogue</Link>
                 </div>
                 <Link to='/cart'>Cart</Link>
             </header>
