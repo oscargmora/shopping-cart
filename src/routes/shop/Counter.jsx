@@ -1,7 +1,28 @@
-import {  useState } from "react";
+import { useState, useEffect } from "react";
+import PropTypes from 'prop-types';
 
-export const Counter = () => {
-    const [counter, setCounter] = useState(1);
+export const Counter = ({dataId, basket, startingNumber}) => {
+    const [counter, setCounter] = useState(startingNumber || 0);
+
+    useEffect(() => {
+        const checkIfStartingNumber = () => {
+            if (startingNumber) {
+                setCounter(startingNumber);
+            }
+        }
+
+        checkIfStartingNumber();
+    }, [startingNumber]);
+
+    useEffect(() => {
+        const checkIfExists = () => {
+            if (dataId in basket) {
+                setCounter(basket[dataId][0]);
+            }
+        }
+
+        checkIfExists();
+    }, [dataId, basket]);
 
     const incrementCounter = () => {
         setCounter((num) => {
@@ -26,3 +47,9 @@ export const Counter = () => {
         </div>
     )
 }
+
+Counter.propTypes = {
+    dataId: PropTypes.number.isRequired,
+    basket: PropTypes.object.isRequired,
+    startingNumber: PropTypes.number,
+} 

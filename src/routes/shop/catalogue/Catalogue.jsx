@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
+import PropTypes from 'prop-types';
 import Header from "../../../header/Header";
 import { getRequestWithNativeFetch } from "./FetchData";
 import { Counter } from "../Counter";
 import catalogueStyles from './catalogue.module.css';
 
-const Catalogue = () => {
+const Catalogue = ({ addToBasket, basket }) => {
     const [items, setItems] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -46,14 +47,19 @@ const Catalogue = () => {
                             <img className={catalogueStyles.img} src={image} />
                             <p>{title}</p>
                             <p>{price}</p>
-                            <Counter />
-                            <button>Add To Cart</button>
+                            <Counter dataId={id} basket={basket} />
+                            <button onClick={(e) => addToBasket(id, Number(e.target.previousSibling.firstChild.nextSibling.innerText), title, image, price)}>Add To Cart</button>
                         </li>
                     ))
                 }
             </ul>
         </>
     )
+}
+
+Catalogue.propTypes = {
+    addToBasket: PropTypes.func.isRequired,
+    basket: PropTypes.object.isRequired,
 }
 
 export default Catalogue;

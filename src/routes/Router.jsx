@@ -1,10 +1,29 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { useState } from "react";
 import Home from "./home/Home";
 import Catalogue from "./shop/catalogue/Catalogue";
 import Cart from "./shop/cart/Cart";
 import ErrorPage from "./error/ErrorPage";
 
 const Router = () => {
+    const [basket, setBasket] = useState({});
+
+    const addToBasket = ( item, count, title, image, price ) => {
+        if (item in basket) {
+            if (count === 0) {
+                delete basket[item];
+            } else {
+                basket[item][0] = count;
+                return basket;
+            }
+        } else {
+            setBasket(basket => {
+                basket = {...basket, [item]: [count, title, image, price]};
+                return basket;
+            });
+        }
+    }
+
     const router = createBrowserRouter([
         {
             path: '/',
@@ -13,11 +32,11 @@ const Router = () => {
         },
         {
             path: 'catalogue',
-            element: <Catalogue />,
+            element: <Catalogue addToBasket={addToBasket} basket={basket} />,
         },
         {
             path: 'cart',
-            element: <Cart />
+            element: <Cart addToBasket={addToBasket} basket={basket} />
         }
     ])
 
