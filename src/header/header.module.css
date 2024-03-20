@@ -3,7 +3,7 @@
     justify-content: space-between;
 }
 
-.header-main {
+.headerMain {
     display: flex;
     gap: 2em;
 }
@@ -11,4 +11,8 @@
 hr {
     margin: 0;
     padding: 0;
+}
+
+.shoppingCart {
+    height: 1em;
 }

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import PropTypes from 'prop-types';
+import counterStyles from './counter.module.css';
 
 export const Counter = ({dataId, basket, startingNumber}) => {
     const [counter, setCounter] = useState(startingNumber || 0);
@@ -40,7 +41,7 @@ export const Counter = ({dataId, basket, startingNumber}) => {
     }
 
     return (
-        <div>
+        <div className={counterStyles.container}>
             <button onClick={decrementCounter}>-</button>
             <div>{counter}</div>
             <button onClick={incrementCounter}>+</button>

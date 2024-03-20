@@ -17,10 +17,12 @@ const Router = () => {
                 return basket;
             }
         } else {
-            setBasket(basket => {
-                basket = {...basket, [item]: [count, title, image, price]};
-                return basket;
-            });
+            if (count !== 0) {
+                setBasket(basket => {
+                    basket = {...basket, [item]: [count, title, image, price]};
+                    return basket;
+                });
+            }
         }
     }
 

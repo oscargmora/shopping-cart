@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import PropTypes from 'prop-types';
 import Header from "../../../header/Header";
 import { getRequestWithNativeFetch } from "./FetchData";
-import { Counter } from "../Counter";
+import { Counter } from "../counter/Counter";
 import catalogueStyles from './catalogue.module.css';
 
 const Catalogue = ({ addToBasket, basket }) => {
@@ -32,27 +32,28 @@ const Catalogue = ({ addToBasket, basket }) => {
     return (
         <>
             <Header />
-            <h3>Catalogue Page</h3>
 
-            {loading && (
-                <div>Loading Catalogue...</div>
-            )}
+            <div className={catalogueStyles.ulContainer}>
+                {loading && (
+                    <div>Loading Catalogue...</div>
+                )}
 
-            {error && <div>{error}</div>}
+                {error && <div>{error}</div>}
 
-            <ul>
-                {
-                    items && items.map(({id, title, image, price}) => (
-                        <li className={catalogueStyles.item} key={id}>
-                            <img className={catalogueStyles.img} src={image} />
-                            <p>{title}</p>
-                            <p>{price}</p>
-                            <Counter dataId={id} basket={basket} />
-                            <button onClick={(e) => addToBasket(id, Number(e.target.previousSibling.firstChild.nextSibling.innerText), title, image, price)}>Add To Cart</button>
-                        </li>
-                    ))
-                }
-            </ul>
+                <ul className={catalogueStyles.ul}>
+                    {
+                        items && items.map(({id, title, image, price}) => (
+                            <li className={catalogueStyles.item} key={id}>
+                                <img className={catalogueStyles.img} src={image} />
+                                <p className={catalogueStyles.title}>{title}</p>
+                                <p>${price}</p>
+                                <Counter dataId={id} basket={basket} />
+                                <button onClick={(e) => addToBasket(id, Number(e.target.previousSibling.firstChild.nextSibling.innerText), title, image, price)}>Add To Cart</button>
+                            </li>
+                        ))
+                    }
+                </ul>
+            </div>
         </>
     )
 }

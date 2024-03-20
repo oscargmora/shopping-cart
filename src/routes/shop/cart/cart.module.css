@@ -1,8 +1,10 @@
 .img {
-    height: 1em;
-    width: 1em;
+    height: 8em;
 }
 
 .item {
     border: black 1px solid;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
 }
