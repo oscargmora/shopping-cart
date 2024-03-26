@@ -1,10 +1,21 @@
-.img {
-    height: 8em;
-}
-
 .item {
     border: black 1px solid;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     align-items: center;
+    margin: 2em;
+    padding: 2em;
+}
+
+.img {
+    height: 8em;
+}
+
+.updateCartButton {
+    width: 50em;
+}
+
+.checkoutButtonContainer {
+    display: flex;
+    justify-content: center;
 }

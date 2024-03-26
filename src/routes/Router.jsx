@@ -11,9 +11,11 @@ const Router = () => {
     const addToBasket = ( item, count, title, image, price ) => {
         if (item in basket) {
             if (count === 0) {
+                console.log(count)
                 delete basket[item];
             } else {
                 basket[item][0] = count;
+                console.log(count)
                 return basket;
             }
         } else {
