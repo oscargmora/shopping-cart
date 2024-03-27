@@ -35,7 +35,7 @@ const Catalogue = ({ addToBasket, basket }) => {
 
             <div className={catalogueStyles.ulContainer}>
                 {loading && (
-                    <div>Loading Catalogue...</div>
+                    <p className={catalogueStyles.loading}>Loading Catalogue...</p>
                 )}
 
                 {error && <div>{error}</div>}

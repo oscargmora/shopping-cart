@@ -9,19 +9,21 @@ const Router = () => {
     const [basket, setBasket] = useState({});
 
     const addToBasket = ( item, count, title, image, price ) => {
+        const newPrice = price * count;
         if (item in basket) {
             if (count === 0) {
                 console.log(count)
                 delete basket[item];
             } else {
                 basket[item][0] = count;
+                basket[item][3] = price * count;
                 console.log(count)
                 return basket;
             }
         } else {
             if (count !== 0) {
                 setBasket(basket => {
-                    basket = {...basket, [item]: [count, title, image, price]};
+                    basket = {...basket, [item]: [count, title, image, newPrice]};
                     return basket;
                 });
             }

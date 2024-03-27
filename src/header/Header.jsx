@@ -6,10 +6,10 @@ const Header = () => {
     return (
         <div className={headerStyles.headerContainer}>
             <header className={headerStyles.header}>
-                <h1>Fake Store</h1>
+                <Link className={headerStyles.link} to='/'><h1>Fake Store</h1></Link>
                 <div className={headerStyles.headerMain}>
-                    <Link to='/'>Home</Link>
-                    <Link to='/catalogue'>Catalogue</Link>
+                    <Link className={headerStyles.link} to='/'>Home</Link>
+                    <Link  className={headerStyles.link} to='/catalogue'>Catalogue</Link>
                 </div>
                 <Link to='/cart'><img className={headerStyles.shoppingCart} src={shoppingCart} /></Link>
             </header>
