@@ -59,8 +59,8 @@ const Catalogue = ({ addToBasket, basket }) => {
 }
 
 Catalogue.propTypes = {
-    addToBasket: PropTypes.func.isRequired,
-    basket: PropTypes.object.isRequired,
+    addToBasket: PropTypes.func,
+    basket: PropTypes.object,
 }
 
 export default Catalogue;
