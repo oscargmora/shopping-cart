@@ -32,8 +32,8 @@ const Cart = ({addToBasket, basket}) => {
 }
 
 Cart.propTypes = {
-    addToBasket: PropTypes.func.isRequired,
-    basket: PropTypes.object.isRequired,
+    addToBasket: PropTypes.func,
+    basket: PropTypes.object,
 }
 
 export default Cart;
