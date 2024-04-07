@@ -16,9 +16,6 @@ const Catalogue = ({ addToBasket, basket }) => {
                 const itemsData = await getRequestWithNativeFetch(
                     'https://fakestoreapi.com/products'
                 );
-
-                console.log(itemsData);
-
                 setItems(itemsData);
                 setError(null);
             } catch (err) {

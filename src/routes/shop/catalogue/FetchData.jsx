@@ -1,9 +1,9 @@
 export const getRequestWithNativeFetch = async (url) => {
-    const response = await fetch(url);
-
-    if (!response.ok) {
-        throw new Error(`HTTP error: Status ${response.status}`);
+    try {
+        const response = await fetch(url);
+        return response.json();
+    } catch (error) {
+        console.error('An error occurred during the request:', error);
+        throw error;
     }
-
-    return response.json();
 };
