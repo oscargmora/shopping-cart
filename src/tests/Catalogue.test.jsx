@@ -531,16 +531,14 @@ describe('Catalogue', () => {
         const onClick = vi.fn()
         const user = userEvent.setup();
         
-        act(() => {
-            render(<BrowserRouter><Catalogue addToBasket={onClick} basket={shoppingList}/></BrowserRouter>)
-        })
+        render(<BrowserRouter><Catalogue addToBasket={onClick} basket={shoppingList}/></BrowserRouter>)
 
         await waitFor(() => expect(screen.queryByText('Loading Catalogue...')).not.toBeInTheDocument());
 
         const buttons = screen.getAllByRole("button", { name: /Add To Cart/i });
         const firstButton = buttons[0];
 
-        await user.click(firstButton);
+        user.click(firstButton);
 
         expect(onClick).toHaveBeenCalled();
     });
