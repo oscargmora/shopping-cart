@@ -538,7 +538,7 @@ describe('Catalogue', () => {
         const buttons = screen.getAllByRole("button", { name: /Add To Cart/i });
         const firstButton = buttons[0];
 
-        user.click(firstButton);
+        await user.click(firstButton);
 
         expect(onClick).toHaveBeenCalled();
     });
