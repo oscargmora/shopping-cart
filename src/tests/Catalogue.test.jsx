@@ -1,4 +1,4 @@
-import { render, screen, waitFor, act } from '@testing-library/react'
+import { render, screen, waitFor, act, fireEvent } from '@testing-library/react'
 import { describe, test, it, expect, vi } from 'vitest';
 import Catalogue from '../routes/shop/catalogue/Catalogue';
 import { BrowserRouter } from 'react-router-dom';
@@ -529,7 +529,6 @@ describe('Catalogue', () => {
 
         //Begin Test
         const onClick = vi.fn()
-        const user = userEvent.setup();
         
         render(<BrowserRouter><Catalogue addToBasket={onClick} basket={shoppingList}/></BrowserRouter>)
 
@@ -538,7 +537,9 @@ describe('Catalogue', () => {
         const buttons = screen.getAllByRole("button", { name: /Add To Cart/i });
         const firstButton = buttons[0];
 
-        await user.click(firstButton);
+        act(() => {
+            fireEvent.click(firstButton);
+        })
 
         expect(onClick).toHaveBeenCalled();
     });

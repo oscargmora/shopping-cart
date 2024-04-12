@@ -60,7 +60,10 @@ const Catalogue = ({ addToBasket, basket }) => {
 
 Catalogue.propTypes = {
     addToBasket: PropTypes.func,
-    basket: PropTypes.object,
+    basket: PropTypes.oneOfType([
+        PropTypes.object,
+        PropTypes.array,
+    ]),
 }
 
 export default Catalogue;

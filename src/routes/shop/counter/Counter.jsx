@@ -51,6 +51,9 @@ export const Counter = ({dataId, basket, startingNumber}) => {
 
 Counter.propTypes = {
     dataId: PropTypes.number.isRequired,
-    basket: PropTypes.object.isRequired,
+    basket: PropTypes.oneOfType([
+        PropTypes.object,
+        PropTypes.array,
+    ]),
     startingNumber: PropTypes.number,
 } 
