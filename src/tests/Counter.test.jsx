@@ -282,6 +282,6 @@ describe('Counter', () => {
             fireEvent.click(firstButton);
         });
         
-        expect(parseInt(counters[0].textContent)).toBe(1);
+        expect(parseInt(counters[0].textContent)).toEqual(1);
     });
 })

@@ -43,7 +43,7 @@ export const Counter = ({dataId, basket, startingNumber}) => {
     return (
         <div className={counterStyles.container}>
             <button onClick={decrementCounter}>-</button>
-            <div>{counter}</div>
+            <div data-testid="counter">{counter}</div>
             <button onClick={incrementCounter}>+</button>
         </div>
     )
