@@ -267,7 +267,12 @@ describe('Counter', () => {
 
         render(<BrowserRouter><Catalogue addToBasket={onClick} basket={shoppingList}/></BrowserRouter>)
 
-        await waitFor(() => expect(screen.queryByText('Loading Catalogue...')).not.toBeInTheDocument());
+        await waitFor(async () => {
+            const loadingText = screen.queryByText('Loading Catalogue...');
+            if (loadingText) {
+                throw new Error('Loading text is still present');
+            }
+        });
 
         const buttons = screen.getAllByRole("button", { name: /\+/ });
         const counters = screen.getAllByText('0');

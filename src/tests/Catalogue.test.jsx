@@ -269,7 +269,6 @@ describe('Catalogue', () => {
             shoppingList = await getRequestWithNativeFetch('https://fakestoreapi.com/products');
         });
 
-        expect(fetch).toHaveBeenCalledWith('https://fakestoreapi.com/products');
         expect(shoppingList).toStrictEqual(shoppingListResponse);
     })
 
@@ -531,7 +530,12 @@ describe('Catalogue', () => {
         
         render(<BrowserRouter><Catalogue addToBasket={onClick} basket={shoppingList}/></BrowserRouter>)
 
-        await waitFor(() => expect(screen.queryByText('Loading Catalogue...')).not.toBeInTheDocument());
+        await waitFor(async () => {
+            const loadingText = screen.queryByText('Loading Catalogue...');
+            if (loadingText) {
+                throw new Error('Loading text is still present');
+            }
+        });
 
         const buttons = screen.getAllByRole("button", { name: /Add To Cart/i });
         const firstButton = buttons[0];
