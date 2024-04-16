@@ -273,7 +273,7 @@ describe('Catalogue', () => {
         expect(shoppingList).toStrictEqual(shoppingListResponse);
     })
 
-    it("should call the onClick function when clicked", async () => {
+    it("should call the incrementCounter function when clicked", async () => {
         // Mock Fetch
         const shoppingListResponse = [
             {
@@ -520,29 +520,31 @@ describe('Catalogue', () => {
     
         fetch.mockResolvedValue(createFetchResponse(shoppingListResponse))
     
-        let shoppingList;
+        const shoppingList = await getRequestWithNativeFetch('https://fakestoreapi.com/products')
 
-        await act(async () => {
-            shoppingList = await getRequestWithNativeFetch('https://fakestoreapi.com/products');
-        });
-
-        expect(fetch).toHaveBeenCalledWith('https://fakestoreapi.com/products');
+        expect(fetch).toHaveBeenCalledWith(
+            'https://fakestoreapi.com/products',
+        )
+    
         expect(shoppingList).toStrictEqual(shoppingListResponse);
 
-        //Begin Test
+        // Start Test
+
         const onClick = vi.fn()
-        
+
         render(<BrowserRouter><Catalogue addToBasket={onClick} basket={shoppingList}/></BrowserRouter>)
 
         await waitFor(() => expect(screen.queryByText('Loading Catalogue...')).not.toBeInTheDocument());
 
-        const buttons = screen.getAllByRole("button", { name: /Add To Cart/i });
+        const buttons = screen.getAllByRole("button", { name: /\+/ });
+        const counters = screen.getAllByText('0');
         const firstButton = buttons[0];
+        expect(parseInt(counters[0].textContent)).toEqual(0);
 
         act(() => {
             fireEvent.click(firstButton);
-        })
-
-        expect(onClick).toHaveBeenCalled();
+        });
+        
+        expect(parseInt(counters[0].textContent)).toEqual(1);
     });
-});
+})
