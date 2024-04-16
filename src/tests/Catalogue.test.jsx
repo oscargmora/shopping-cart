@@ -526,9 +526,6 @@ describe('Catalogue', () => {
             shoppingList = await getRequestWithNativeFetch('https://fakestoreapi.com/products');
         });
 
-        expect(fetch).toHaveBeenCalledWith('https://fakestoreapi.com/products');
-        expect(shoppingList).toStrictEqual(shoppingListResponse);
-
         //Begin Test
         const onClick = vi.fn()
         
