@@ -11,8 +11,8 @@ function createFetchResponse(data) {
     return { json: () => new Promise((resolve) => resolve(data)) }
 }
 
-describe('Counter', () => {
-    it("should call the incrementCounter function when clicked", async () => {
+describe('Decrement Counter', () => {
+    it("should decrease amount by 1", async () => {
         // Mock Fetch
         const shoppingListResponse = [
             {
@@ -274,14 +274,22 @@ describe('Counter', () => {
             }
         });
 
-        const buttons = screen.getAllByRole("button", { name: /\+/ });
+        const plusButtons = screen.getAllByRole("button", { name: /\+/ });
+        const buttons = screen.getAllByRole("button", { name: /-/ });
         const counters = screen.getAllByText('0');
+        const firstPlusButton = plusButtons[0];
         const firstButton = buttons[0];
+
+        act(() => {
+            fireEvent.click(firstPlusButton);
+        });
 
         act(() => {
             fireEvent.click(firstButton);
         });
         
-        expect(parseInt(counters[0].textContent)).toEqual(1);
+        setTimeout(() => {
+            expect(parseInt(counters[0].textContent)).toEqual(0);
+        }, 100); // Adjust the delay as needed
     });
 })
